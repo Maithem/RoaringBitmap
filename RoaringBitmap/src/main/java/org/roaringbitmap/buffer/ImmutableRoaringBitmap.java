@@ -1290,15 +1290,6 @@ public class ImmutableRoaringBitmap
     return (int) getLongCardinality();
   }
 
-  @Override
-  public void forEach(IntConsumer ic) {
-    for (int i = 0; i < this.highLowContainer.size(); i++) {
-      highLowContainer.getContainerAtIndex(i).forEach(highLowContainer.getKeyAtIndex(i), ic);
-    }
-  }
-
-
-
   /**
    * Return a low-level container pointer that can be used to access the underlying data structure.
    *

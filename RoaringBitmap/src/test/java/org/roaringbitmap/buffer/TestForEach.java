@@ -3,6 +3,7 @@ package org.roaringbitmap.buffer;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.function.Consumer;
 import java.util.function.IntConsumer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,10 +16,10 @@ public class TestForEach {
     bitmap.add(100L, 10000L);
   
     final MutableInteger cardinality = new MutableInteger();
-    bitmap.forEach(new IntConsumer() {
+    bitmap.forEach(new Consumer<Integer>() {
       int expected = 100;
       @Override
-      public void accept(int value) {
+      public void accept(Integer value) {
         cardinality.value++;
         assertEquals(value, expected++);
       }});
@@ -32,10 +33,10 @@ public class TestForEach {
       bitmap.add(k);
   
     final MutableInteger cardinality = new MutableInteger();
-    bitmap.forEach(new IntConsumer() {
+    bitmap.forEach(new Consumer<Integer>() {
       int expected = 0;
       @Override
-      public void accept(int value) {
+      public void accept(Integer value) {
         cardinality.value++;
         assertEquals(value, expected);
         expected += 3;
@@ -51,10 +52,10 @@ public class TestForEach {
       bitmap.add(k);
   
     final MutableInteger cardinality = new MutableInteger();
-    bitmap.forEach(new IntConsumer() {
+    bitmap.forEach(new Consumer<Integer>() {
       int expected = 0;
       @Override
-      public void accept(int value) {
+      public void accept(Integer value) {
         cardinality.value++;
         assertEquals(value, expected);
         expected+=3000;

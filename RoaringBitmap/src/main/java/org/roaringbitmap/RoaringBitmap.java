@@ -19,6 +19,7 @@ import java.io.Serializable;
 import java.nio.ByteBuffer;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.function.Consumer;
 import java.util.function.IntConsumer;
 
 import static org.roaringbitmap.RoaringBitmapWriter.writer;
@@ -57,8 +58,8 @@ import static org.roaringbitmap.Util.lowbitsAsInteger;
  */
 
 
-public class RoaringBitmap implements Cloneable, Serializable, Iterable<Integer>, Externalizable,
-    ImmutableBitmapDataProvider, BitmapDataProvider, AppendableStorage<Container> {
+public class RoaringBitmap implements Cloneable, Serializable, Externalizable,
+    BitmapDataProvider, AppendableStorage<Container> {
 
   private final class RoaringIntIterator implements PeekableIntIterator {
     private int hs = 0;
@@ -1888,14 +1889,6 @@ public class RoaringBitmap implements Cloneable, Serializable, Iterable<Integer>
   public int getCardinality() {
     return (int) getLongCardinality();
   }
-
-  @Override
-  public void forEach(IntConsumer ic) {
-    for (int i = 0; i < this.highLowContainer.size(); i++) {
-      this.highLowContainer.getContainerAtIndex(i).forEach(this.highLowContainer.keys[i], ic);
-    }
-  }
-
 
   /**
    * Return a low-level container pointer that can be used to access the underlying data structure.

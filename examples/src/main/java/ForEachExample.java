@@ -25,7 +25,7 @@ public class ForEachExample {
             rb.add(k);
         }
         final int[] count = {0};
-        rb.forEach((IntConsumer) value -> {
+        rb.forEach(value -> {
             if((value % 1500) == 0) {
                 count[0] ++;
             }

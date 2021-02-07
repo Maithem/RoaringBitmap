@@ -2,6 +2,7 @@ package org.roaringbitmap.realdata.wrapper;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.util.function.Consumer;
 import java.util.function.IntConsumer;
 
 public interface Bitmap {
@@ -34,7 +35,7 @@ public interface Bitmap {
 
   BitmapAggregator priorityQueueOrAggregator();
 
-  void forEach(IntConsumer ic);
+  void forEach(Consumer<Integer> ic);
 
   void serialize(DataOutputStream dos) throws IOException;
 

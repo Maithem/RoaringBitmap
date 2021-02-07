@@ -539,7 +539,7 @@ public class Fuzzer {
     // Size limit to avoid out of memory errors; r.last() > 0 to avoid bitmaps with last > Integer.MAX_VALUE
     verifyInvariance(r -> r.isEmpty() || (r.last() > 0 && r.last() < 1 << 30), bitmap -> {
       BitSet reference = new BitSet();
-      bitmap.forEach((IntConsumer) reference::set);
+      bitmap.forEach(reference::set);
 
       for (int next : bitmap) {
         for (int offset : offsets) {

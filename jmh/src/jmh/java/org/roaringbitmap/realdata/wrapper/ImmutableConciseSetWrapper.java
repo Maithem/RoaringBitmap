@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.PriorityQueue;
+import java.util.function.Consumer;
 import java.util.function.IntConsumer;
 
 import it.uniroma3.mat.extendedset.intset.ImmutableConciseSet;
@@ -158,7 +159,7 @@ final class ImmutableConciseSetWrapper implements Bitmap {
   }
 
   @Override
-  public void forEach(IntConsumer ic) {
+  public void forEach(Consumer<Integer> ic) {
     throw new UnsupportedOperationException("Not implemented in ImmutableConciseSet");
   }
 

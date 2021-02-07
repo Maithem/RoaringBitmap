@@ -1,6 +1,7 @@
 package org.roaringbitmap.realdata;
 
 import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 import java.util.function.IntConsumer;
 
 import org.openjdk.jmh.annotations.Benchmark;
@@ -16,7 +17,7 @@ public class RealDataBenchmarkForEach {
 
   @Benchmark
   public int forEach(RealDataBenchmarkState bs) {
-    Consumer consumer = new Consumer();
+    MyConsumer consumer = new MyConsumer();
     for (int k = 0; k < bs.bitmaps.size(); ++k) {
       Bitmap bitmap = bs.bitmaps.get(k);
       bitmap.forEach(consumer);
@@ -24,11 +25,11 @@ public class RealDataBenchmarkForEach {
     return consumer.total;
   }
 
-  private static class Consumer implements IntConsumer {
+  private static class MyConsumer implements Consumer<Integer> {
     int total = 0;
 
     @Override
-    public void accept(int value) {
+    public void accept(Integer value) {
       total += value;
     }
   }

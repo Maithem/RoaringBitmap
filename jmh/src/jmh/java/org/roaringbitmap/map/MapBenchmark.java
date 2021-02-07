@@ -27,7 +27,7 @@ public class MapBenchmark {
   @Benchmark
   public RoaringBitmap testMap(BenchmarkState benchmarkState) {
     final RoaringBitmap answer = new RoaringBitmap();
-    benchmarkState.bitmap.forEach((IntConsumer) value -> answer.add(inttointmap(value)));
+    benchmarkState.bitmap.forEach(value -> answer.add(inttointmap(value)));
     return answer;
   }
 
@@ -36,7 +36,7 @@ public class MapBenchmark {
   @Benchmark
   public RoaringBitmap testMapViaBitset(BenchmarkState benchmarkState) {
     final BitSet altRes = new java.util.BitSet();
-    benchmarkState.bitmap.forEach((IntConsumer) value -> altRes.set(inttointmap(value)));
+    benchmarkState.bitmap.forEach(value -> altRes.set(inttointmap(value)));
     return BitSetUtil.bitmapOf(altRes);
   }
 

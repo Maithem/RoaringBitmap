@@ -1445,7 +1445,7 @@ public class TestImmutableRoaringBitmap {
             .toMutableRoaringBitmap();
 
     BitSet bitset = new BitSet();
-    bitmap.forEach((IntConsumer) bitset::set);
+    bitmap.forEach(bitset::set);
     long b1 = 0;
     int b2 = 0;
     while (b1 >= 0 && b2 >= 0) {
@@ -1467,7 +1467,7 @@ public class TestImmutableRoaringBitmap {
             .build().toMutableRoaringBitmap();
 
     BitSet bitset = new BitSet();
-    bitmap.forEach((IntConsumer) bitset::set);
+    bitmap.forEach(bitset::set);
     long b1 = toUnsignedLong(bitmap.last());
     int b2 = bitset.previousSetBit(Integer.MAX_VALUE);
     int i = bitmap.getCardinality();

@@ -121,7 +121,7 @@ public class Concatenation {
 
   private static BitSet toBitSet(RoaringBitmap rb) {
     BitSet bs = new BitSet();
-    rb.forEach((IntConsumer) bs::set);
+    rb.forEach(bs::set);
     return bs;
   }
 }

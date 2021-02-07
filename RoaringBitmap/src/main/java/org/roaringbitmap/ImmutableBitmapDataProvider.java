@@ -19,7 +19,7 @@ import java.util.stream.StreamSupport;
  * Interface representing an immutable bitmap.
  *
  */
-public interface ImmutableBitmapDataProvider {
+public interface ImmutableBitmapDataProvider extends Iterable<Integer> {
   /**
    * Checks whether the value in included, which is equivalent to checking if the corresponding bit
    * is set (get in BitSet class).
@@ -44,26 +44,6 @@ public interface ImmutableBitmapDataProvider {
    * @return the cardinality
    */
   long getLongCardinality();
-
-  /**
-   * Visit all values in the bitmap and pass them to the consumer.
-   * 
-   * * Usage: 
-   * <pre>
-   * {@code
-   *  bitmap.forEach(new IntConsumer() {
-   *
-   *    {@literal @}Override
-   *    public void accept(int value) {
-   *      // do something here
-   *      
-   *    }});
-   *   }
-   * }
-   * </pre>
-   * @param ic the consumer
-   */
-  void forEach(IntConsumer ic);
 
   /**
    * For better performance, consider the Use the {@link #forEach forEach} method.

@@ -15,6 +15,7 @@ import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.function.IntConsumer;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -144,9 +145,9 @@ public class TestRoaringBitmap {
 	}
 	@Test
 	public  void limitBug2() {
-		class MyConsumer implements IntConsumer {
+		class MyConsumer implements Consumer<Integer> {
 			public int count = 0;
-			@Override public void accept(int value) { count++; }
+			@Override public void accept(Integer value) { count++; }
 		}
 
 		MutableRoaringBitmap r = new MutableRoaringBitmap();

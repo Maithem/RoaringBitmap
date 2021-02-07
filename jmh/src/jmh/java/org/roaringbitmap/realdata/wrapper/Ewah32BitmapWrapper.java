@@ -3,6 +3,7 @@ package org.roaringbitmap.realdata.wrapper;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.function.Consumer;
 import java.util.function.IntConsumer;
 
 import com.googlecode.javaewah32.EWAHCompressedBitmap32;
@@ -152,7 +153,7 @@ final class Ewah32BitmapWrapper implements Bitmap {
   }
 
   @Override
-  public void forEach(IntConsumer ic) {
+  public void forEach(Consumer<Integer> ic) {
     throw new UnsupportedOperationException("Not implemented in Ewah32");
   }
 

@@ -3,6 +3,7 @@ package org.roaringbitmap.realdata.wrapper;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.function.Consumer;
 import java.util.function.IntConsumer;
 
 import org.roaringbitmap.buffer.BufferFastAggregation;
@@ -134,7 +135,7 @@ final class ImmutableRoaringBitmapWrapper implements Bitmap {
   }
 
   @Override
-  public void forEach(IntConsumer ic) {
+  public void forEach(Consumer<Integer> ic) {
     bitmap.forEach(ic);
   }
 

@@ -432,13 +432,7 @@ public class Roaring64NavigableMap implements Externalizable, LongBitmapDataProv
   @Override
   public void forEach(final LongConsumer lc) {
     for (final Entry<Integer, BitmapDataProvider> highEntry : highToBitmap.entrySet()) {
-      highEntry.getValue().forEach(new IntConsumer() {
-
-        @Override
-        public void accept(int low) {
-          lc.accept(RoaringIntPacking.pack(highEntry.getKey(), low));
-        }
-      });
+      highEntry.getValue().forEach(low -> lc.accept(RoaringIntPacking.pack(highEntry.getKey(), low)));
     }
   }
 

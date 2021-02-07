@@ -16,6 +16,7 @@ import org.junit.jupiter.api.parallel.ExecutionMode;
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.function.IntConsumer;
 import java.util.stream.IntStream;
 
@@ -123,11 +124,11 @@ public class TestRoaringBitmap {
 
     @Test
     public void limitBug2() {
-        class MyConsumer implements IntConsumer {
+        class MyConsumer implements Consumer<Integer> {
             public int count = 0;
 
             @Override
-            public void accept(int value) {
+            public void accept(Integer value) {
                 count++;
             }
         }
@@ -5274,7 +5275,7 @@ public class TestRoaringBitmap {
                 .build();
 
         BitSet bitset = new BitSet();
-        bitmap.forEach((IntConsumer) bitset::set);
+        bitmap.forEach(bitset::set);
         long b1 = 0;
         int b2 = 0;
         while (b1 >= 0 && b2 >= 0) {
@@ -5296,7 +5297,7 @@ public class TestRoaringBitmap {
                 .build();
 
         BitSet bitset = new BitSet();
-        bitmap.forEach((IntConsumer) bitset::set);
+        bitmap.forEach(bitset::set);
         long b1 = Util.toUnsignedLong(bitmap.last());
         int b2 = bitset.previousSetBit(Integer.MAX_VALUE);
         int i = bitmap.getCardinality();
