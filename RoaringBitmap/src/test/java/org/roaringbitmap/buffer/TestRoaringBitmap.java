@@ -2916,8 +2916,8 @@ public class TestRoaringBitmap {
       rb.add(k * 100);
     }
     MutableRoaringBitmap copy1 = new MutableRoaringBitmap();
-    for (int x : rb) {
-      copy1.add(x);
+    for (Iterator<Integer> x = rb.iterator(); x.hasNext();) {
+      copy1.add(x.next());
     }
     assertTrue(copy1.equals(rb));
     MutableRoaringBitmap copy2 = new MutableRoaringBitmap();
@@ -2951,8 +2951,8 @@ public class TestRoaringBitmap {
       rb.add((1<<31)+k * 100);
     }
     MutableRoaringBitmap copy1 = new MutableRoaringBitmap();
-    for (int x : rb) {
-      copy1.add(x);
+    for (Iterator<Integer> x = rb.iterator(); x.hasNext();) {
+      copy1.add(x.next());
     }
     assertTrue(copy1.equals(rb));
     MutableRoaringBitmap copy2 = new MutableRoaringBitmap();
@@ -2989,8 +2989,8 @@ public class TestRoaringBitmap {
       orb.add(k * 100);
     }
     MutableRoaringBitmap ocopy1 = new MutableRoaringBitmap();
-    for (int x : orb) {
-      ocopy1.add(x);
+    for (Iterator<Integer> x = orb.iterator(); x.hasNext();) {
+      ocopy1.add(x.next());
     }
     assertTrue(ocopy1.equals(orb));
     MutableRoaringBitmap copy2 = new MutableRoaringBitmap();
@@ -3024,8 +3024,8 @@ public class TestRoaringBitmap {
       orb.add((1<<32)+k * 100);
     }
     MutableRoaringBitmap ocopy1 = new MutableRoaringBitmap();
-    for (int x : orb) {
-      ocopy1.add(x);
+    for (Iterator<Integer> x = orb.iterator(); x.hasNext();) {
+      ocopy1.add(x.next());
     }
     assertTrue(ocopy1.equals(orb));
     MutableRoaringBitmap copy2 = new MutableRoaringBitmap();

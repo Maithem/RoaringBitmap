@@ -1507,9 +1507,9 @@ public class TestImmutableRoaringBitmap {
       BitSet reference = new BitSet();
       bitmap.iterator().forEachRemaining(reference::set);
 
-      for (int next : bitmap) {
+      for (Iterator<Integer> next = bitmap.iterator(); next.hasNext();) {
         for (int offset : offsets) {
-          int pos = next + offset;
+          int pos = next.next() + offset;
           if (pos >= 0) {
             assertEquals(reference.nextClearBit(pos), bitmap.nextAbsentValue(pos));
             assertEquals(reference.previousClearBit(pos), bitmap.previousAbsentValue(pos));

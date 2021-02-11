@@ -209,12 +209,15 @@ public class TestSerialization {
     assertEquals(imrempty.isEmpty(), true);
     ImmutableRoaringBitmap imrb = new ImmutableRoaringBitmap(presoutbb);
     int cksum1 = 0, cksum2 = 0, count1 = 0, count2 = 0;
-    for (int x : bitmap_a) { // or bitmap_a1 for a version without run
-      cksum1 += x;
+    Iterator<Integer> iter1 = bitmap_a.iterator();
+    while (iter1.hasNext()) {
+      cksum1 += iter1.next();
       ++count1;
     }
-    for (int x : imrb) {
-      cksum2 += x;
+
+    Iterator<Integer> iter2 = imrb.iterator();
+    while (iter2.hasNext()) {
+      cksum2 += iter2.next();
       ++count2;
     }
 
@@ -264,13 +267,13 @@ public class TestSerialization {
     bb1.flip();
     ImmutableRoaringBitmap imrb = new ImmutableRoaringBitmap(bb1);
     int cksum1 = 0, cksum2 = 0, count1 = 0, count2 = 0;
-    for (int x : bm1) {
-      cksum1 += x;
+    for (Iterator<Integer> x = bm1.iterator(); x.hasNext();) {
+      cksum1 += x.next();
       ++count1;
     }
 
-    for (int x : imrb) {
-      cksum2 += x;
+    for (Iterator<Integer> x = imrb.iterator(); x.hasNext();) {
+      cksum2 += x.next();
       ++count2;
     }
 
@@ -284,11 +287,12 @@ public class TestSerialization {
     assertEquals(bitmap_emptyr.isEmpty(), true);
     assertEquals(bitmap_empty.isEmpty(), true);
     int cksum1 = 0, cksum2 = 0;
-    for (int x : bitmap_a) {
-      cksum1 += x;
+
+    for (Iterator<Integer> x = bitmap_a.iterator(); x.hasNext();) {
+      cksum1 += x.next();
     }
-    for (int x : bitmap_ar) {
-      cksum2 += x;
+      for (Iterator<Integer> x = bitmap_ar.iterator(); x.hasNext();) {
+      cksum2 += x.next();
     }
     assertEquals(cksum1, cksum2);
   }
@@ -305,11 +309,12 @@ public class TestSerialization {
     assertEquals(emptyt.isEmpty(), true);
     mrb.deserialize(dis);
     int cksum1 = 0, cksum2 = 0;
-    for (int x : bitmap_a) {
-      cksum1 += x;
+    for (Iterator<Integer> x = bitmap_a.iterator(); x.hasNext();) {
+      cksum1 += x.next();
     }
-    for (int x : mrb) {
-      cksum2 += x;
+
+    for (Iterator<Integer> x = mrb.iterator(); x.hasNext();) {
+      cksum2 += x.next();
     }
     assertEquals(cksum1, cksum2);
   }

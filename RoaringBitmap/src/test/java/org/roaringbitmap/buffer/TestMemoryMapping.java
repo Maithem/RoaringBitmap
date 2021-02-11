@@ -16,6 +16,7 @@ import java.nio.ByteOrder;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -552,12 +553,13 @@ public class TestMemoryMapping {
       int card1 = 0;
       int oldvalue = -1;
       long t1 = System.nanoTime();
-      for (int x : target) {
-        assertTrue(target.contains(x));
-        if (x > oldvalue) {
+      for (Iterator<Integer> x = target.iterator(); x.hasNext();) {
+        int current = x.next();
+        assertTrue(target.contains(current));
+        if (current > oldvalue) {
           ++card1;
         }
-        oldvalue = x;
+        oldvalue = current;
       }
       long t2 = System.nanoTime();
       System.out.println(" iterator one ns/ops = " + (t2 - t1) * 1.0 / truecard);
@@ -592,12 +594,13 @@ public class TestMemoryMapping {
       int card1 = 0;
       int oldvalue = -1;
       long t1 = System.nanoTime();
-      for (int x : target) {
-        assertTrue(ramtarget.contains(x));
-        if (x > oldvalue) {
+      for (Iterator<Integer> x = target.iterator(); x.hasNext();) {
+        int current = x.next();
+        assertTrue(ramtarget.contains(current));
+        if (current > oldvalue) {
           ++card1;
         }
-        oldvalue = x;
+        oldvalue = current;
       }
       long t2 = System.nanoTime();
       System.out.println(" iterator one ns/ops = " + (t2 - t1) * 1.0 / truecard);
@@ -630,8 +633,8 @@ public class TestMemoryMapping {
       rb.add(k * 100);
     }
     MutableRoaringBitmap copy1 = new MutableRoaringBitmap();
-    for (int x : rb) {
-      copy1.add(x);
+    for (Iterator<Integer> x = rb.iterator(); x.hasNext();) {
+      copy1.add(x.next());
     }
     assertTrue(copy1.equals(rb));
     MutableRoaringBitmap copy2 = new MutableRoaringBitmap();

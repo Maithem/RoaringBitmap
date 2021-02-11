@@ -271,15 +271,15 @@ public class TestIterators {
       int j = 0;
 
       // we can iterate over the mutable bitmap
-      for (int i : bitmap) {
-          j += i;
+      for (Iterator<Integer> i = bitmap.iterator(); i.hasNext();) {
+          j += i.next();
       }
       
       int jj = 0;
 
       // we can iterate over the immutable bitmap
-      for (int i : rrback1) {
-          jj+= i;
+      for (Iterator<Integer> i = rrback1.iterator(); i.hasNext();) {
+          jj+= i.next();
       }
       assertEquals(j, jj);
 

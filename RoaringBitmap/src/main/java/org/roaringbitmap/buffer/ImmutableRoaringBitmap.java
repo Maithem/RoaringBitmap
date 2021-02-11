@@ -70,8 +70,7 @@ import static org.roaringbitmap.buffer.MutableRoaringBitmap.rangeSanityCheck;
  *
  * @see MutableRoaringBitmap
  */
-public class ImmutableRoaringBitmap
-    implements Iterable<Integer>, Cloneable, ImmutableBitmapDataProvider {
+public class ImmutableRoaringBitmap implements Cloneable, ImmutableBitmapDataProvider {
 
   private final class ImmutableRoaringIntIterator implements PeekableIntIterator {
     private MappeableContainerPointer cp =
@@ -1458,7 +1457,6 @@ public class ImmutableRoaringBitmap
    *
    * @return the iterator
    */
-  @Override
   public Iterator<Integer> iterator() {
     return new Iterator<Integer>() {
       int hs = 0;
